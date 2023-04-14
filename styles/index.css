@@ -28,6 +28,12 @@ body {
     background-color: #333;
 }
 
+.logo{
+    display: flex;
+    justify-content: flex-start;
+    color: #fff;
+}
+
 .navbar ul {
     list-style-type: none;
     display: flex;
@@ -49,6 +55,14 @@ body {
 
 .navbar ul li a:hover {
     background-color: #555;
+}
+
+.ver-carrito{
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    font-size: 25px;
 }
 
 /* Estilos de la Sección Principal */
