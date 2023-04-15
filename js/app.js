@@ -6,6 +6,8 @@ const verCarrito = document.getElementById("verCarrito")
 
 const modalContainer = document.getElementById("modal-container")
 
+const cantidadCarrito = document.getElementById("cantidadCarrito")
+
 productos.forEach((producto) => {
     //creacion cards de productos
     let content = document.createElement("div")
@@ -27,60 +29,26 @@ productos.forEach((producto) => {
 
     //detecta click sobre el boton comprar y agrega el elemento al carrito 
     comprar.addEventListener("click", () => {
+    //validar cantidad de productos y si el producto existe en el carrito
+    const repeat = carrito.some((repeatProduct) => repeatProduct.id === producto.id)
+        //suma un producto repetido al carrito
+        if (repeat) {
+            carrito.map((prod) => {
+                if (prod.id === producto.id) {
+                    prod.cantidad++
+                }
+            })
+        }else {
         carrito.push({
             id : producto.id,
             img : producto.img,
             nombre : producto.nombre,
-            precio : producto.precio
-        })
+            precio : producto.precio,
+            cantidad : producto.cantidad
+        })            
+        }
         console.log(carrito)
+        contadorCarrito()
     })
 })
 
-
-//creacion de modal para mostrar el carrito con los productos elegidos por el usuario
-verCarrito.addEventListener("click", () => {
-    //limpia el html que genero y evita repetir
-    modalContainer.innerHTML = ""
-    //mostrar carrito despues de cerrarlo
-    modalContainer.style.display = "flex"
-    //creacion header modal
-    const modalHeader = document.createElement("div")
-    modalHeader.className = "modal-header"
-    modalHeader.innerHTML = `
-        <h1 class="modal-header-title">Carrito</h1>
-    `
-    modalContainer.append(modalHeader)
-
-    const modalButton = document.createElement("h1")
-    modalButton.innerText = "x"
-    modalButton.className = "modal-header-button"
-
-    //funcion de cerrar el carrito
-    modalButton.addEventListener("click", () => {
-        modalContainer.style.display = "none"
-    })
-
-    modalHeader.append(modalButton)
-
-    //creacion body modal y mostrar los productos del carrito
-    carrito.forEach((producto) => {
-        let carritoContent = document.createElement("div")
-        carritoContent.className = "modal-content"
-        carritoContent.innerHTML = `
-        <img src="${producto.img}">
-        <h3>${producto.nombre}</h3>
-        <p>${producto.precio}</p>
-    `
-    modalContainer.append(carritoContent)
-    })
-
-    //obtener el total de la compra
-    const total = carrito.reduce((acc, el) => acc + el.precio, 0)
-    //cracion footer modal
-    const totalCompra = document.createElement("div")
-    totalCompra.className = "total-content"
-    totalCompra.innerHTML = `total a pagar: $${total}`
-    modalContainer.append(totalCompra)
-
-})

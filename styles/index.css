@@ -58,11 +58,29 @@ body {
 }
 
 .ver-carrito{
-    color: #fff;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 50px;
+    color: #000;
+    display: block;
+    float: right !important;
+    position: absolute;
+    right: 0px !important;
     font-size: 25px;
+    cursor: pointer;
+}
+
+.cantidad-carrito{
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 4px;
+    top: 37px;
+    right: 14px;
+    position: absolute;
+    display: none;
+}
+
+.delete-product{
+    cursor: pointer;
 }
 
 /* Estilos de la Sección Principal */
@@ -220,6 +238,33 @@ body {
         text-align: center;
     }
 
+    .logo{
+        display: flex;
+        justify-content: center;
+        padding-top: 15px;
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+    }
+    
+    .navbar ul li {
+        margin: 20px;
+    }
+    
+    .navbar ul li a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        transition: 0.3s;
+    }
+    
+
+    
     .container-prod {
         display: flex;
         flex-direction: column;
@@ -282,6 +327,34 @@ body {
         opacity: 0.7;
     }
 
+    .ver-carrito{
+        color: #000;
+        display: block;
+        float: right !important;
+        position: absolute;
+        right: 5px !important;
+        font-size: 25px;
+        cursor: pointer;
+    }
+    
+    .cantidad-carrito{
+        background-color: red;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 12px;
+        padding: 4px;
+        top: 37px;
+        right: 14px;
+        position: absolute;
+        display: none;
+    }
+    
+    .delete-product{
+        display: flex;
+        margin-bottom: 10px;
+        margin-top: 13px;
+    }
+    
     /* estilos modal */
 
     .modal-container {
@@ -322,7 +395,7 @@ body {
 
     .modal-container .modal-content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
         align-items: center;
         width: 70%;
