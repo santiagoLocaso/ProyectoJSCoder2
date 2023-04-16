@@ -58,10 +58,16 @@ verCarrito.addEventListener("click", pintarCarrito)
 
 
 //eliminar producto
+
 const eliminarProducto = (id) => {
-    carrito = carrito.filter(producto => producto.id !== id); // Filtrar los productos que no coincidan con el id
-    contadorCarrito();
-    pintarCarrito();
+    const foundIndex = carrito.findIndex(producto => producto.id === id); // Buscar el índice del producto con el id específico
+    if (foundIndex !== -1) {
+        carrito.splice(foundIndex, 1); // Eliminar el producto del array carrito usando splice
+        contadorCarrito();
+        pintarCarrito();
+    } else {
+        console.log(`No se encontró ningún producto con el id ${id} en el carrito.`);
+    }
 }
 
 
