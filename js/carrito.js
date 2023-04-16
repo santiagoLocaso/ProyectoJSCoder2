@@ -58,16 +58,12 @@ verCarrito.addEventListener("click", pintarCarrito)
 
 
 //eliminar producto
-const eliminarProducto = () => {
-    const foundId = carrito.find((producto) => producto.id)
-
-    carrito = carrito.filter((carritoId) => {
-        return carritoId !== foundId
-    })
-
-    contadorCarrito()
-    pintarCarrito()
+const eliminarProducto = (id) => {
+    carrito = carrito.filter(producto => producto.id !== id); // Filtrar los productos que no coincidan con el id
+    contadorCarrito();
+    pintarCarrito();
 }
+
 
 
 
