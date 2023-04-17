@@ -34,7 +34,7 @@ productos.forEach((producto) => {
     const repeat = carrito.some((repeatProduct) => repeatProduct.id === producto.id)
         //suma un producto repetido al carrito
         if (repeat) {
-            carrito.map((prod) => {
+            carrito.find((prod) => {
                 if (prod.id === producto.id) {
                     prod.cantidad++
                 }

@@ -30,7 +30,7 @@ body {
 
 .logo{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     color: #fff;
 }
 
@@ -108,9 +108,11 @@ body {
 }
 .container-prod {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .product-container {
@@ -123,7 +125,8 @@ body {
 .product-item {
     max-width: 300px;
     margin: 0 20px;
-    padding: 20px;
+    margin-top: 25px;
+    padding: 30px;
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
