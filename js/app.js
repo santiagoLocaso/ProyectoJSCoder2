@@ -1,4 +1,5 @@
-let carrito = []
+//getItem recupera los datos del localStorage, si no hay nada guardado carrito es un array vacio
+let carrito = JSON.parse(localStorage.getItem("carritoJson")) || []
 
 const productContainer = document.getElementById("product-container")
 
@@ -39,6 +40,7 @@ productos.forEach((producto) => {
                 }
             })
         }else {
+        //añadir los elementos que selecciona el usuario al carrito
         carrito.push({
             id : producto.id,
             img : producto.img,
@@ -49,6 +51,13 @@ productos.forEach((producto) => {
         }
         console.log(carrito)
         contadorCarrito()
+        carritoStorage()
     })
 })
 
+
+//localStorage del carrito
+const carritoStorage = () => {
+    let carritoJson = JSON.stringify(carrito)
+    localStorage.setItem("carritoJson", carritoJson)
+}

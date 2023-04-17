@@ -33,20 +33,19 @@ const pintarCarrito = () => {
         <p>$${producto.precio}</p>
         <p>Cantidad: ${producto.cantidad}</p>
         <p>Total: $${producto.cantidad * producto.precio}</p>
+        <span class="delete-product"> X </span>
     `
     modalContainer.append(carritoContent)
 
-    //creacion boton para eliminar producto del carrito
-    let eliminar = document.createElement("span")
-    eliminar.innerText = "X"
-    eliminar.className = "delete-product"
-    carritoContent.append(eliminar)
-
-    eliminar.addEventListener("click", eliminarProducto)
+        //creacion boton para eliminar producto del carrito
+        let eliminar = carritoContent.querySelector(".delete-product")
+        eliminar.addEventListener("click", () => {
+        eliminarProducto(producto.id)
+        })
     })
 
     //obtener el total de la compra
-    const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0)
+    const total = carrito.reduce((acc, i) => acc + i.precio * i.cantidad, 0)
     //cracion footer modal
     const totalCompra = document.createElement("div")
     totalCompra.className = "total-content"
@@ -57,22 +56,29 @@ const pintarCarrito = () => {
 verCarrito.addEventListener("click", pintarCarrito)
 
 
-//eliminar producto
-const eliminarProducto = () => {
-    const foundId = carrito.find((producto) => producto.id)
+//funcion para eliminar producto
+const eliminarProducto = (id) => {
+    const foundId = carrito.find((producto) => producto.id === id)
 
     carrito = carrito.filter((carritoId) => {
         return carritoId !== foundId
     })
 
     contadorCarrito()
+    //avisa al localStorage que un producto es eliminado y este lo elimina
+    carritoStorage()
     pintarCarrito()
 }
 
 
 
-//mostrar cantidad de productos dentro del carrito
+//mostrar cantidad de productos dentro del carrito y almacenarlo en un localStorage
 const contadorCarrito = () => {
     cantidadCarrito.style.display = "block"
-    cantidadCarrito.innerText = carrito.length
+
+    const carritoLength = carrito.length
+    localStorage.setItem("carritoLength", JSON.stringify(carritoLength))
+    cantidadCarrito.innerText = JSON.parse(localStorage.getItem("carritoLength"))
 }
+
+contadorCarrito()
